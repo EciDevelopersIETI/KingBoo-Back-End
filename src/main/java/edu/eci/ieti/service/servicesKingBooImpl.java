@@ -30,5 +30,8 @@ public class servicesKingBooImpl {
 	public List<User> getAllUsuarios(){
 		return userRepository.findAll();
 	}
+	public User getUserByEmail(String mail) {
+		return userRepository.findByEmail(mail);
+	}
 
 }
