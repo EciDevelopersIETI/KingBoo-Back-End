@@ -70,6 +70,15 @@ public class UserController {
 		return new ResponseEntity<>(new Token(jwtToken, user), HttpStatus.OK);
 	}
 
+	@PostMapping("/newuser")
+	public ResponseEntity<?> newUser(@RequestBody User user) throws ServletException {
+		String jwtToken = "";
+		System.out.println("llegoooooooooooooo a controlleeeeeeeeeeeeeeeer");
+		Service.saveUser(user);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
+
 
 
 
