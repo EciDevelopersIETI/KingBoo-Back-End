@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* edu.eci.ieti.ApiKingBoo
+web: java -Dserver.port=$PORT -jar target/KingBoo-Back-End-1.0-SNAPSHOT.jar
