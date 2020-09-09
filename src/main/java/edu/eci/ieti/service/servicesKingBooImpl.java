@@ -26,12 +26,16 @@ public class servicesKingBooImpl {
 	        }
 			return usuario;
 
-	  }  
+	}
 	public List<User> getAllUsuarios(){
 		return userRepository.findAll();
 	}
 	public User getUserByEmail(String mail) {
 		return userRepository.findByEmail(mail);
+	}
+
+	public void saveUser(User user){
+		userRepository.save(user);
 	}
 
 }
