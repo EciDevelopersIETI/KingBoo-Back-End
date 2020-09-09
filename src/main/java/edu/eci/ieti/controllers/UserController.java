@@ -45,29 +45,32 @@ public class UserController {
 	       }
 	 }
 	 @PostMapping("/login")
-	    public ResponseEntity<?> login(@RequestBody User userLogin) throws ServletException {
-	        String jwtToken = "";
-	        System.out.println("llegoooooooooooooo a controlleeeeeeeeeeeeeeeer");
-	        if (userLogin.getEmail() == null || userLogin.getPassword() == null) {
-	            throw new ServletException("Please fill in username and password");
-	        }
+	 public ResponseEntity<?> login(@RequestBody User userLogin) throws ServletException {
+		String jwtToken = "";
+		System.out.println("llegoooooooooooooo a controlleeeeeeeeeeeeeeeer");
+		if (userLogin.getEmail() == null || userLogin.getPassword() == null) {
+			throw new ServletException("Please fill in username and password");
+		}
 
-	        String email = userLogin.getEmail();
-	        String password = userLogin.getPassword();
+		String email = userLogin.getEmail();
+		String password = userLogin.getPassword();
 
-	        User user = Service.getUserByEmail(email);
+		User user = Service.getUserByEmail(email);
 
-	        String pwd = user.getPassword();
+		String pwd = user.getPassword();
 
 
-	        if (!pwd.equals(password)) {
-	            throw new ServletException("Invalid login. Please check your name and password.");
-	        }
+		if (!pwd.equals(password)) {
+			throw new ServletException("Invalid login. Please check your name and password.");
+		}
 
-	        jwtToken = Jwts.builder().setSubject(email).claim("roles", "user").setIssuedAt(new Date(System.currentTimeMillis() + 600000)).signWith(
-			        SignatureAlgorithm.HS256, PasswordEncryptorConfiguration.passwordEncryptor().encryptPassword(pwd)).compact();
+		jwtToken = Jwts.builder().setSubject(email).claim("roles", "user").setIssuedAt(new Date(System.currentTimeMillis() + 600000)).signWith(
+				SignatureAlgorithm.HS256, PasswordEncryptorConfiguration.passwordEncryptor().encryptPassword(pwd)).compact();
 
-	        return new ResponseEntity<>(new Token(jwtToken, user), HttpStatus.OK);
-	    }
+		return new ResponseEntity<>(new Token(jwtToken, user), HttpStatus.OK);
+	}
+
+
+
 
 }
