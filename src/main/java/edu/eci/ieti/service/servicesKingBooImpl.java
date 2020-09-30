@@ -34,6 +34,9 @@ public class servicesKingBooImpl {
 	public List<User> getAllUsuarios(){
 		return userRepository.findAll();
 	}
+	public List<Reserva> getAllReservas(){
+		return reservaRepository.findAll();
+	}
 	public User getUserByEmail(String mail) {
 		return userRepository.findByEmail(mail);
 	}
