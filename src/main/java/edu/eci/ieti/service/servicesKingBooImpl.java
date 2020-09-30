@@ -8,7 +8,9 @@ import edu.eci.ieti.persistence.ProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.eci.ieti.entities.Reserva;
 import edu.eci.ieti.entities.User;
+import edu.eci.ieti.persistence.ReservaRepository;
 import edu.eci.ieti.persistence.UserRepository;
 
 @Service
@@ -16,6 +18,8 @@ public class servicesKingBooImpl {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
+	private ReservaRepository reservaRepository;
+  @Autowired
 	private ProviderRepository providerRepository;
 
 	public servicesKingBooImpl() {
@@ -45,6 +49,9 @@ public class servicesKingBooImpl {
 			System.out.println("Im in");
 		}
 		userRepository.save(user);
+	}
+	public void saveReserva(Reserva reserva) {
+		reservaRepository.save(reserva);
 	}
 
 	public void saveProvider(Provider provider){
