@@ -3,8 +3,10 @@ package edu.eci.ieti;
 
 
 
+
 import java.util.Date;
 
+import edu.eci.ieti.entities.Provider;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,10 +41,16 @@ public class ApiKingBoo
     public CommandLineRunner demo(servicesKingBooImpl service) {
       return (args) -> {
     	
-    	  	String res[] = {"Barba"};
-    	  	User user = service.getUserByEmail("f9830@hotmail.com");
-    	  	Reserva reserva=new Reserva(new Date(),res,"xd","carlos",user);
-    	  	service.saveReserva(reserva);
+    	  	  String servicios[] = {"corte","unas"};
+            Provider provider = new Provider("Luis Shop",123,"Calle 14#5c-19",servicios,"Carlos es mi amigo");
+            User user1 = new User("Luis","luis@mail.com","ieti123","3107704065",provider);
+            service.saveUser(user1);
+
+            User user2 = new User("Charlis","carlitos@mail.com","ieti123","3125465454",new Provider());
+            service.saveUser(user2);
+
+            User user3 = new User("Fernando","fernando@mail.com","ieti123","3152211212",new Provider());
+            service.saveUser(user3);
     	  	
     	  	
         
