@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 
+
+
 @Document(collection = "users")
 public class User {
 
@@ -24,7 +26,7 @@ public class User {
 		    	this.telefono=telefono;
 		    	this.provider=provider;
 		    }
-
+			
 			public String getTelefono() {
 				return telefono;
 			}
