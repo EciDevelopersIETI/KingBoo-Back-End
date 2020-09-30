@@ -1,6 +1,10 @@
 package edu.eci.ieti;
 
 
+
+
+import java.util.Date;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import edu.eci.ieti.entities.Reserva;
 import edu.eci.ieti.entities.User;
 import edu.eci.ieti.persistence.UserRepository;
 import edu.eci.ieti.service.servicesKingBooImpl;
@@ -28,14 +34,15 @@ public class ApiKingBoo
     }
     
 
-    
     /**
     @Bean
-    public CommandLineRunner demo(UserRepository service) {
+    public CommandLineRunner demo(servicesKingBooImpl service) {
       return (args) -> {
     	
-    	  	User user =service.findByEmail("f9830@hotmail.com");
-    	  	System.out.println(user.getUserName());
+    	  	String res[] = {"Barba"};
+    	  	User user = service.getUserByEmail("f9830@hotmail.com");
+    	  	Reserva reserva=new Reserva(new Date(),res,"xd","carlos",user);
+    	  	service.saveReserva(reserva);
     	  	
     	  	
         
@@ -45,4 +52,5 @@ public class ApiKingBoo
       
     }
     */
+    
 }

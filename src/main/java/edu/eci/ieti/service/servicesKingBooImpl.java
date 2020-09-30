@@ -6,13 +6,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.eci.ieti.entities.Reserva;
 import edu.eci.ieti.entities.User;
+import edu.eci.ieti.persistence.ReservaRepository;
 import edu.eci.ieti.persistence.UserRepository;
 
 @Service
 public class servicesKingBooImpl {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private ReservaRepository reservaRepository;
 	public servicesKingBooImpl() {
 		// TODO Auto-generated constructor stub
 	}
@@ -36,6 +40,9 @@ public class servicesKingBooImpl {
 
 	public void saveUser(User user){
 		userRepository.save(user);
+	}
+	public void saveReserva(Reserva reserva) {
+		reservaRepository.save(reserva);
 	}
 
 }
