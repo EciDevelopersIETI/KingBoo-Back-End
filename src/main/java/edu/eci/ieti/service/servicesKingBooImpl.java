@@ -57,5 +57,9 @@ public class servicesKingBooImpl {
 	public void saveProvider(Provider provider){
 		providerRepository.save(provider);
 	}
+	public List<Provider> getAllProviders(){
+		return providerRepository.findAll();
+	}
+
 
 }
