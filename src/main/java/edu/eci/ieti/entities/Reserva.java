@@ -6,6 +6,8 @@ import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Document(collection = "reservas")
 public class Reserva {
 	private Date fecha;
@@ -14,14 +16,14 @@ public class Reserva {
 	private String comentario;
 	private String encargado;
 	private User user;
-	public Reserva(Date fecha, String[] servicios, String comentario, String encargado, User users) {
+	public Reserva(Date fecha, String[] servicios, String comentario, String encargado, User user) {
 		this.fecha = fecha;
 		SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");
 		this.hora = formateador.format(fecha);
 		this.servicios = servicios;
 		this.comentario = comentario;
 		this.encargado = encargado;
-		this.user = users;
+		this.user = user;
 	}
 	public Date getFecha() {
 		return fecha;
