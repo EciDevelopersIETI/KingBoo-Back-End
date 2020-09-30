@@ -13,13 +13,16 @@ public class User {
 		    private String email;
 		    private String password;
 		    private String telefono;
-		    
-		    public User(String userName,String email,String password,String telefono) {
-		    	//this.userId=userId;
+		    private Provider provider;
+
+
+
+			public User(String userName, String email, String password, String telefono,Provider provider) {
 		    	this.userName=userName;
 		    	this.email=email;
 		    	this.password=password;
 		    	this.telefono=telefono;
+		    	this.provider=provider;
 		    }
 
 			public String getTelefono() {
@@ -53,6 +56,15 @@ public class User {
 		        this.password = password;
 		    }
 
+			public Provider getProvider() {
+				return provider;
+			}
+
+			public void setProvider(Provider provider) {
+				this.provider = provider;
+			}
+
+			/**
 		    @Override
 		    public String toString() {
 		        return "User{" +
@@ -62,6 +74,7 @@ public class User {
 						", telefono='" + telefono + '\'' +
 		                '}';
 		    }
+			 */
 	
 
 }

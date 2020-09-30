@@ -31,19 +31,20 @@ import org.apache.commons.codec.binary.Base64;
 public class UserController {
 	
 	@Autowired
-    private servicesKingBooImpl Service;
+	private servicesKingBooImpl Service;
 	public UserController() {
 		// TODO Auto-generated constructor stub
 	}
-	 @RequestMapping (method = RequestMethod.GET )
-	 public ResponseEntity<?>  getAllUsers(){
-	        try{
-	            List<User> usuarios = Service.getAllUsuarios();
-	            return new ResponseEntity<>(usuarios, HttpStatus.ACCEPTED);
-	        }catch (Exception e){
-	            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
-	       }
-	 }
+	@RequestMapping (method = RequestMethod.GET )
+	public ResponseEntity<?>  getAllUsers(){
+		try{
+			List<User> usuarios = Service.getAllUsuarios();
+			return new ResponseEntity<>(usuarios, HttpStatus.ACCEPTED);
+		}catch (Exception e){
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+	   }
+	}
+
 	 @PostMapping("/login")
 	 public ResponseEntity<?> login(@RequestBody User userLogin) throws ServletException {
 		String jwtToken = "";
@@ -51,22 +52,15 @@ public class UserController {
 		if (userLogin.getEmail() == null || userLogin.getPassword() == null) {
 			throw new ServletException("Please fill in username and password");
 		}
-
 		String email = userLogin.getEmail();
 		String password = userLogin.getPassword();
-
 		User user = Service.getUserByEmail(email);
-
 		String pwd = user.getPassword();
-
-
 		if (!pwd.equals(password)) {
 			throw new ServletException("Invalid login. Please check your name and password.");
 		}
-
 		jwtToken = Jwts.builder().setSubject(email).claim("roles", "user").setIssuedAt(new Date(System.currentTimeMillis() + 600000)).signWith(
 				SignatureAlgorithm.HS256, PasswordEncryptorConfiguration.passwordEncryptor().encryptPassword(pwd)).compact();
-
 		return new ResponseEntity<>(new Token(jwtToken, user), HttpStatus.OK);
 	}
 
@@ -77,9 +71,5 @@ public class UserController {
 		Service.saveUser(user);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-
-
-
-
 
 }

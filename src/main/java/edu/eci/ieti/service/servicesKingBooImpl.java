@@ -3,6 +3,8 @@ package edu.eci.ieti.service;
 import java.util.List;
 import java.util.Optional;
 
+import edu.eci.ieti.entities.Provider;
+import edu.eci.ieti.persistence.ProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ import edu.eci.ieti.persistence.UserRepository;
 public class servicesKingBooImpl {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private ProviderRepository providerRepository;
+
 	public servicesKingBooImpl() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,8 +30,8 @@ public class servicesKingBooImpl {
 	        	e.printStackTrace(); 
 	        }
 			return usuario;
-
 	}
+
 	public List<User> getAllUsuarios(){
 		return userRepository.findAll();
 	}
@@ -35,7 +40,15 @@ public class servicesKingBooImpl {
 	}
 
 	public void saveUser(User user){
+		if(user.getProvider().getProviderName()!=null){
+			saveProvider(user.getProvider());
+			System.out.println("Im in");
+		}
 		userRepository.save(user);
+	}
+
+	public void saveProvider(Provider provider){
+		providerRepository.save(provider);
 	}
 
 }
