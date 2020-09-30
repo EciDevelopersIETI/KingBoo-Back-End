@@ -36,7 +36,7 @@ public class ApiKingBoo
     }
     
 
-    /**
+    
     @Bean
     public CommandLineRunner demo(servicesKingBooImpl service) {
       return (args) -> {
@@ -59,6 +59,6 @@ public class ApiKingBoo
       };   
       
     }
-    */
+
     
 }
