@@ -27,16 +27,14 @@ import edu.eci.ieti.service.servicesKingBooImpl;
 @SpringBootApplication
 @ComponentScan("edu.eci.ieti")
 @EntityScan("edu.eci.ieti.entities")
-public class ApiKingBoo
-{
+public class ApiKingBoo{
 
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ){
     	SpringApplication.run(ApiKingBoo.class, args);
     }
     
 
-    
+    /**   
     @Bean
     public CommandLineRunner demo(servicesKingBooImpl service) {
       return (args) -> {
@@ -51,14 +49,7 @@ public class ApiKingBoo
 
             User user3 = new User("Fernando","fernando@mail.com","ieti123","3152211212",new Provider());
             service.saveUser(user3);
-    	  	
-    	  	
-        
-        
-  
+    	  	  
       };   
-      
-    }
-
-    
+    }*/
 }
