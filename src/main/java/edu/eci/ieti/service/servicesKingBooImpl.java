@@ -45,6 +45,7 @@ public class servicesKingBooImpl {
 	public User getUserByEmail(String mail) {
 		return userRepository.findByEmail(mail);
 	}
+
 	public Reserva getReservaById(String id) {
 		return reservaRepository.findByReservaId(id);
 	}
@@ -54,13 +55,14 @@ public class servicesKingBooImpl {
 	public Provider getProviderByName(String name){
 		return providerRepository.findByProviderName(name);
 	}
-	public void saveUser(User user){
-		if(user.getProvider().getProviderName()!=null){
-			saveProvider(user.getProvider());
-			System.out.println("Im in");
+	public void saveUser(User user)  {
+		if (user.getProvider().getProviderName() != null) {
+        saveProvider(user.getProvider());
+        System.out.println("Im in");
 		}
 		userRepository.save(user);
 	}
+
 	public void saveReserva(Reserva reserva) {
 		reservaRepository.save(reserva);
 	}
