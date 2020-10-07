@@ -46,11 +46,17 @@ public class servicesKingBooImpl {
 		return userRepository.findByEmail(mail);
 	}
 
+	public Reserva getReservaById(String id) {
+		return reservaRepository.findByReservaId(id);
+	}
+	public Provider getProviderByName(String name){
+		return providerRepository.findByProviderName(name);
+	}
 	public void saveUser(User user)  {
 		if (user.getProvider().getProviderName() != null) {
-			saveProvider(user.getProvider());
-			System.out.println("Im in");
-			}
+        saveProvider(user.getProvider());
+        System.out.println("Im in");
+		}
 		userRepository.save(user);
 	}
 
