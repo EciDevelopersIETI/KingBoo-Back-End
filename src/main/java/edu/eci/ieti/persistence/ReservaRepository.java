@@ -10,6 +10,7 @@ import edu.eci.ieti.entities.User;
 public interface ReservaRepository extends MongoRepository<Reserva, String> {
 	Reserva findByUser(User user);
 	Reserva findByReservaId(String id);
+	void deleteByReservaId(String id);
 
 
 }
