@@ -14,13 +14,15 @@ public class Provider {
     private String address;
     private String[] services;
     private String description;
+    private int capacity;
 
-    public Provider(String providerName, long nit, String address, String[] services, String description) {
+    public Provider(String providerName, long nit, String address, String[] services, String description, int capacity) {
         this.providerName = providerName;
         this.nit = nit;
         this.address = address;
         this.services = services;
         this.description = description;
+        this.capacity = capacity;
     }
 
     public  Provider(){ }
@@ -65,6 +67,9 @@ public class Provider {
         this.description = description;
     }
 
+    public int getCapacity() { return capacity; }
+
+    public void setCapacity(int capacity) { this.capacity = capacity; }
 
     /**
     @Override
