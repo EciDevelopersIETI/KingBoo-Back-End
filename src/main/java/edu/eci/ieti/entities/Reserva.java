@@ -10,21 +10,51 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Document(collection = "reservas")
 public class Reserva {
+	private String reservaId;
 	private Date fecha;
 	private String hora;
 	private String[] servicios;
 	private String comentario;
 	private String encargado;
 	private User user;
-	public Reserva(Date fecha, String[] servicios, String comentario, String encargado, User user) {
-		this.fecha = fecha;
+	private Provider  provider;
+
+	
+
+	public Reserva(Date fecha, String[] servicios, String comentario, String encargado,User user, Provider provider) {
+		this.reservaId = provider.getProviderName()+fecha.toString();
+		this.fecha=fecha;
 		SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");
 		this.hora = formateador.format(fecha);
 		this.servicios = servicios;
 		this.comentario = comentario;
 		this.encargado = encargado;
 		this.user = user;
+		this.provider = provider;
 	}
+
+
+
+	public String getReservaId() {
+		return reservaId;
+	}
+
+
+
+	public void setReservaId(String reservaId) {
+		this.reservaId = reservaId;
+	}
+
+
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
