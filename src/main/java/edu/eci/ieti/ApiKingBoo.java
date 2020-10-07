@@ -33,6 +33,7 @@ public class ApiKingBoo {
         SpringApplication.run(ApiKingBoo.class, args);
     }
 
+
     /**
      @Bean public CommandLineRunner demo(servicesKingBooImpl service) {
      return (args) -> {
@@ -56,4 +57,5 @@ public class ApiKingBoo {
      };
      }
      */
+
 }

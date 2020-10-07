@@ -66,6 +66,9 @@ public class servicesKingBooImpl {
 	public void saveReserva(Reserva reserva) {
 		reservaRepository.save(reserva);
 	}
+	public void deleteReserva(String id) {
+		reservaRepository.deleteByReservaId(id);;
+	}
 
 	public void saveProvider(Provider provider){
 		providerRepository.save(provider);
