@@ -49,6 +49,9 @@ public class servicesKingBooImpl {
 	public Reserva getReservaById(String id) {
 		return reservaRepository.findByReservaId(id);
 	}
+	public String[] getServicesProviderByName(String name){
+		return this.getProviderByName(name).getServices();
+	}
 	public Provider getProviderByName(String name){
 		return providerRepository.findByProviderName(name);
 	}
@@ -70,6 +73,7 @@ public class servicesKingBooImpl {
 	public List<Provider> getAllProviders(){
 		return providerRepository.findAll();
 	}
+	
 
 
 }
