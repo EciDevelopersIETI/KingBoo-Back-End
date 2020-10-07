@@ -19,7 +19,7 @@ public class servicesKingBooImpl {
 	private UserRepository userRepository;
 	@Autowired
 	private ReservaRepository reservaRepository;
-  @Autowired
+  	@Autowired
 	private ProviderRepository providerRepository;
 
 	public servicesKingBooImpl() {
@@ -66,9 +66,19 @@ public class servicesKingBooImpl {
 	public void saveReserva(Reserva reserva) {
 		reservaRepository.save(reserva);
 	}
+
 	public void deleteReserva(String id) {
 		reservaRepository.deleteByReservaId(id);;
 	}
+
+	public void updateEncargadoReserva(String name, String id){
+		Reserva reserva = this.getReservaById(id);
+		reserva.setEncargado(name);
+		this.deleteReserva(id);
+		this.saveReserva(reserva);
+	}
+
+
 
 	public void saveProvider(Provider provider){
 		providerRepository.save(provider);

@@ -24,6 +24,8 @@ import edu.eci.ieti.entities.User;
 import edu.eci.ieti.persistence.UserRepository;
 import edu.eci.ieti.service.servicesKingBooImpl;
 
+import javax.xml.ws.Service;
+
 @SpringBootApplication
 @ComponentScan("edu.eci.ieti")
 @EntityScan("edu.eci.ieti.entities")
@@ -34,7 +36,7 @@ public class ApiKingBoo {
     }
 
 
-    /**
+     /**
      @Bean public CommandLineRunner demo(servicesKingBooImpl service) {
      return (args) -> {
 
@@ -54,8 +56,12 @@ public class ApiKingBoo {
      User user4 = new User("Zeus","zeus@mail.com","ieti123","64521215",new Provider());
      service.saveUser(user4);
 
+      //service.updateEncargadoReserva("Andres","Luis Shop2020-09-3011:35");
+
+
+
      };
-     }
-     */
+     }*/
+
 
 }
