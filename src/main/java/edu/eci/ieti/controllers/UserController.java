@@ -1,10 +1,8 @@
 package edu.eci.ieti.controllers;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
-import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,6 @@ import edu.eci.ieti.entities.User;
 import edu.eci.ieti.service.servicesKingBooImpl;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.apache.commons.codec.binary.Base64;
 
 @RestController
 @CrossOrigin
@@ -67,11 +64,23 @@ public class UserController {
 
 	@PostMapping("/newuser")
 	public ResponseEntity<?> newUser(@RequestBody User user) throws ServletException {
-		String jwtToken = "";
-		System.out.println("llegoooooooooooooo a controlleeeeeeeeeeeeeeeer");
-		Service.saveUser(user);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		List<User> users = Service.getAllUsuarios();
+		Boolean res = false;
+		for (User u:users){
+			System.out.println(u.getEmail().equals(user.getEmail()));
+			if(u.getEmail().equals(user.getEmail())){
+				System.out.println("Hola, el user esta repetido xdddd");
+				res = true;
+			}
+		}
+		if(!res) {
+			Service.saveUser(user);
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		} else{
+			throw new ServletException("Ususarios existentes");
+		}
 	}
+
 	@RequestMapping(path ="/{correo}",method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioByNick(@PathVariable ("correo") String correo){
             return new ResponseEntity<>(Service.getUserByEmail(correo),HttpStatus.ACCEPTED);
