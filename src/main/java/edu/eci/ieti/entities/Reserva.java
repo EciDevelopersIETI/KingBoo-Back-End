@@ -22,7 +22,6 @@ public class Reserva {
 	
 
 	public Reserva(Date fecha, String[] servicios, String comentario, String encargado,User user, Provider provider) {
-		this.reservaId = provider.getProviderName()+fecha.toString();
 		this.fecha=fecha;
 		SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");
 		this.hora = formateador.format(fecha);

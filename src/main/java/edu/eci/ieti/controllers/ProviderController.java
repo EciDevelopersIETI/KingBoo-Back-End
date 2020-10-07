@@ -33,8 +33,13 @@ public class ProviderController {
         }
     }
     @RequestMapping(path ="/{name}",method = RequestMethod.GET)
-    public ResponseEntity<?> getUsuarioByNick(@PathVariable ("name") String name){
+    public ResponseEntity<?> getProviderByName(@PathVariable ("name") String name){
             return new ResponseEntity<>(Service.getProviderByName(name),HttpStatus.ACCEPTED);
+
+    }
+    @RequestMapping(path ="/{name}/service",method = RequestMethod.GET)
+    public ResponseEntity<?> getServicesProviderByName(@PathVariable ("name") String name){
+            return new ResponseEntity<>(Service.getServicesProviderByName(name),HttpStatus.ACCEPTED);
 
     }
 
