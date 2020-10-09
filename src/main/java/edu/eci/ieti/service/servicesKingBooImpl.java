@@ -78,15 +78,11 @@ public class servicesKingBooImpl {
 		this.saveReserva(reserva);
 	}
 
-
-
 	public void saveProvider(Provider provider){
 		providerRepository.save(provider);
 	}
 	public List<Provider> getAllProviders(){
 		return providerRepository.findAll();
 	}
-	
-
 
 }

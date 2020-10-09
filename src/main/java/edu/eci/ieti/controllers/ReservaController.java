@@ -49,4 +49,10 @@ public class ReservaController {
 
     }
 
+    @PostMapping("/updatereserva")
+	public ResponseEntity<?> updateReserva(@RequestBody String idReserva,String encargado) throws ServletException {
+		Service.updateEncargadoReserva(idReserva,encargado);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
 }
