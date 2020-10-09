@@ -46,13 +46,11 @@ public class ReservaController {
 	@RequestMapping(path ="/{id}",method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioByNick(@PathVariable ("id") String id){
             return new ResponseEntity<>(Service.getReservaById(id),HttpStatus.ACCEPTED);
-
     }
 
     @PostMapping("/updatereserva")
-	public ResponseEntity<?> updateReserva(@RequestBody String idReserva,String encargado) throws ServletException {
-		Service.updateEncargadoReserva(idReserva,encargado);
+	public ResponseEntity<?> updateReserva(@RequestBody String name,String id) throws ServletException {
+		Service.updateEncargadoReserva(name,id);
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
-
 }
