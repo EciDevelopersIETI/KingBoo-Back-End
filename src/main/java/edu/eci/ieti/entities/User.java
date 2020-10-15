@@ -18,7 +18,6 @@ public class User {
 		    private Provider provider;
 		    private String rol;			
 			public User(String userName, String email, String password, String telefono, Provider provider) {
-				super();
 				this.userName = userName;
 				this.email = email;
 				this.password = password;
