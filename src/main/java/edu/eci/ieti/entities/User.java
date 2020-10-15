@@ -23,7 +23,7 @@ public class User {
 				this.password = password;
 				this.telefono = telefono;
 				this.provider = provider;
-				this.rol = this.provider.getNit() != 0 ? "pro":"cli";
+				this.rol = provider.getNit() != 0 ? "pro":"cli";
 			}
 			
 			public String getRol() {
