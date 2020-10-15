@@ -1,5 +1,6 @@
 package edu.eci.ieti.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,19 @@ public class servicesKingBooImpl {
 	public Reserva getReservaById(String id) {
 		return reservaRepository.findByReservaId(id);
 	}
+
+	public List<Reserva> getReservaByUser(User user){
+		List<Reserva> reservas = new ArrayList<>();
+		for(Reserva res:reservaRepository.findAll()){
+			System.out.println("res: "+res.getUser().getEmail());
+			System.out.println("user: "+user.getEmail());
+			if(res.getUser().getEmail().equals(user.getEmail())){
+				reservas.add(res);
+			}
+		}
+		return reservas;
+	}
+
 	public String[] getServicesProviderByName(String name){
 		return this.getProviderByName(name).getServices();
 	}

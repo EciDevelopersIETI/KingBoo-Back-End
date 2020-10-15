@@ -84,7 +84,7 @@ public class UserController {
 	@RequestMapping(path ="/{correo}",method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioByNick(@PathVariable ("correo") String correo){
             return new ResponseEntity<>(Service.getUserByEmail(correo),HttpStatus.ACCEPTED);
-
     }
+
 
 }

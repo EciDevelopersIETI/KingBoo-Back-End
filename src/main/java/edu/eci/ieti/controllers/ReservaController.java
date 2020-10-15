@@ -44,6 +44,13 @@ public class ReservaController {
             return new ResponseEntity<>(Service.getReservaById(id),HttpStatus.ACCEPTED);
     }
 
+
+	@RequestMapping(path ="/user/{user}",method = RequestMethod.GET)
+	public ResponseEntity<?> getReservaByUser(@PathVariable ("user") String user){
+		User usuario = Service.getUserByEmail(user);
+		return new ResponseEntity<>(Service.getReservaByUser(usuario),HttpStatus.ACCEPTED);
+	}
+
     @PostMapping("/updatereserva")
 	@ResponseBody
 	public ResponseEntity<?> updateReserva(@RequestBody String update) throws ServletException {
