@@ -16,17 +16,25 @@ public class User {
 		    private String password;
 		    private String telefono;
 		    private Provider provider;
-
-
-
-			public User(String userName, String email, String password, String telefono,Provider provider) {
-		    	this.userName=userName;
-		    	this.email=email;
-		    	this.password=password;
-		    	this.telefono=telefono;
-		    	this.provider=provider;
-		    }
+		    private String rol;			
+			public User(String userName, String email, String password, String telefono, Provider provider) {
+				super();
+				this.userName = userName;
+				this.email = email;
+				this.password = password;
+				this.telefono = telefono;
+				this.provider = provider;
+				this.rol = this.provider.getNit() != 0 ? "pro":"cli";
+			}
 			
+			public String getRol() {
+				return rol;
+			}
+
+			public void setRol(String rol) {
+				this.rol = rol;
+			}
+
 			public String getTelefono() {
 				return telefono;
 			}
