@@ -4,16 +4,12 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.json.JSONObject;
 
 import edu.eci.ieti.entities.Reserva;
 import edu.eci.ieti.entities.User;
@@ -49,8 +45,10 @@ public class ReservaController {
     }
 
     @PostMapping("/updatereserva")
-	public ResponseEntity<?> updateReserva(@RequestBody String name,String id) throws ServletException {
-		Service.updateEncargadoReserva(name,id);
+	@ResponseBody
+	public ResponseEntity<?> updateReserva(@RequestBody String update) throws ServletException {
+		JSONObject encargado = new JSONObject(update);
+		Service.updateEncargadoReserva(encargado.get("encargado").toString(),encargado.get("reservaId").toString());
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 }
