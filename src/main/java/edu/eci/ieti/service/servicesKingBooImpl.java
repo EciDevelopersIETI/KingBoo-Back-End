@@ -51,6 +51,17 @@ public class servicesKingBooImpl {
 		return reservaRepository.findByReservaId(id);
 	}
 
+	public List<Reserva> getReservaByProvider(String provider){
+		List<Reserva> reservas = new ArrayList<>();
+		for(Reserva res:reservaRepository.findAll()){
+			System.out.println("res: "+res.getProvider().getProviderName());
+			if(res.getProvider().getProviderName().equals(provider)){
+				reservas.add(res);
+			}
+		}
+		return reservas;
+	}
+
 	public List<Reserva> getReservaByUser(User user){
 		List<Reserva> reservas = new ArrayList<>();
 		for(Reserva res:reservaRepository.findAll()){

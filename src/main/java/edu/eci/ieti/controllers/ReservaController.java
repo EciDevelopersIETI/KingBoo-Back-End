@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import edu.eci.ieti.entities.Provider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,11 @@ public class ReservaController {
 	public ResponseEntity<?> getReservaByUser(@PathVariable ("user") String user){
 		User usuario = Service.getUserByEmail(user);
 		return new ResponseEntity<>(Service.getReservaByUser(usuario),HttpStatus.ACCEPTED);
+	}
+
+	@RequestMapping(path ="/provider/{provider}",method = RequestMethod.GET)
+	public ResponseEntity<?> getReservaByProvider(@PathVariable ("provider") String provider){
+		return new ResponseEntity<>(Service.getReservaByProvider(provider),HttpStatus.ACCEPTED);
 	}
 
     @PostMapping("/updatereserva")
