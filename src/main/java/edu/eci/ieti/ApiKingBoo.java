@@ -36,10 +36,10 @@ public class ApiKingBoo {
     }
 
 
-
+ /**
      @Bean public CommandLineRunner demo(servicesKingBooImpl service) {
      return (args) -> {
- /**
+
      String servicios[] = {"Corte de Cabello","Manicura","Barba","Depilacion"};
      Provider provider = new Provider("Luis Shop",123,"Calle 14#5c-19",servicios,"Carlos es mi amigo",5);
      User user1 = new User("Luis","luis@mail.com","ieti123","3107704065",provider);
@@ -55,7 +55,7 @@ public class ApiKingBoo {
 
      User user4 = new User("Zeus","zeus@mail.com","ieti123","64521215",new Provider());
      service.saveUser(user4);
-*/
+
       //service.updateEncargadoReserva("Andres","Luis Shop2020-09-3011:35");
          String serviciosx[] = {"Manicura", "Depilacion"};
          Provider providerx = new Provider("Hugos cute haircuts",45678946,"Calle 69#5c-19",serviciosx,"Hola, ven a cortarte el pelo y la barba con nostros xd",15);
@@ -65,7 +65,7 @@ public class ApiKingBoo {
 
 
      };
-     }
+     } */
 
 
 }
