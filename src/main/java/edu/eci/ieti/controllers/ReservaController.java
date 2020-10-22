@@ -64,4 +64,12 @@ public class ReservaController {
 		Service.updateEncargadoReserva(encargado.get("encargado").toString(),encargado.get("reservaId").toString());
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
+
+	@PostMapping("/deletereserva")
+	@ResponseBody
+	public ResponseEntity<?> deleteReserva(@RequestBody String delete) throws ServletException {
+		JSONObject encargado = new JSONObject(delete);
+		Service.deleteReserva(encargado.get("reservaId").toString());
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	}
 }
