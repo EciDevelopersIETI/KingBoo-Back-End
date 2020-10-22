@@ -96,12 +96,22 @@ public class servicesKingBooImpl {
 		reservaRepository.deleteByReservaId(id);;
 	}
 
+	public void deleteUser(String email){
+	    userRepository.deleteUserByEmail(email);
+    }
+
 	public void updateEncargadoReserva(String name, String id){
 		Reserva reserva = this.getReservaById(id);
 		reserva.setEncargado(name);
 		this.deleteReserva(id);
 		this.saveReserva(reserva);
 	}
+
+	public void updateProvider(User user){
+		// User usr = this.getUserByEmail(user.getEmail());
+		this.deleteUser(user.getEmail());
+		this.saveUser(user);
+    }
 
 	public void saveProvider(Provider provider){
 		providerRepository.save(provider);

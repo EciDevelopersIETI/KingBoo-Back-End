@@ -8,5 +8,5 @@ import edu.eci.ieti.entities.User;
 
 public interface UserRepository extends MongoRepository<User, String> {
 	User findByEmail(String email);
-
+	void deleteUserByEmail(String email);
 }
