@@ -5,16 +5,11 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.eci.ieti.config.PasswordEncryptorConfiguration;
 import edu.eci.ieti.config.Token;
@@ -85,6 +80,12 @@ public class UserController {
     public ResponseEntity<?> getUsuarioByNick(@PathVariable ("correo") String correo){
             return new ResponseEntity<>(Service.getUserByEmail(correo),HttpStatus.ACCEPTED);
     }
+
+	@PostMapping("/updateprovider")
+	public ResponseEntity<?> updateProvider(@RequestBody User user) throws ServletException {
+		Service.updateProvider(user);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	}
 
 
 }
