@@ -1,5 +1,6 @@
 package edu.eci.ieti.controllers;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -51,7 +52,26 @@ public class ReservaController {
 		User usuario = Service.getUserByEmail(user);
 		return new ResponseEntity<>(Service.getReservaByUser(usuario),HttpStatus.ACCEPTED);
 	}
+	
+	@RequestMapping(path ="/provider/{provider}/date/{date}",method = RequestMethod.GET)
+	public ResponseEntity<?> getReservaByProviderandDate(@PathVariable ("provider") String provider,@PathVariable ("date") String fecha){
+		try {
+			return new ResponseEntity<>(Service.getReservasByFecha(provider,fecha),HttpStatus.ACCEPTED);
+		} catch (ParseException e) {
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	@RequestMapping(path ="/provider/{provider}/date/{date}/getcupos",method = RequestMethod.GET)
+	public ResponseEntity<?> getReservaByProviderandDateCupos(@PathVariable ("provider") String provider,@PathVariable ("date") String fecha){
+		try {
+			return new ResponseEntity<>(Service.getCuposDisponibles(provider, fecha),HttpStatus.ACCEPTED);
+		} catch (ParseException e) {
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
 
+
+	
 	@RequestMapping(path ="/provider/{provider}",method = RequestMethod.GET)
 	public ResponseEntity<?> getReservaByProvider(@PathVariable ("provider") String provider){
 		return new ResponseEntity<>(Service.getReservaByProvider(provider),HttpStatus.ACCEPTED);
