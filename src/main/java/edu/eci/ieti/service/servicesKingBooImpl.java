@@ -84,7 +84,7 @@ public class servicesKingBooImpl {
 			if(hora.equals(res.getHora())) {
 				cont++;
 			}			
-			else if(Integer.parseInt(hora2[0])<Integer.parseInt(hora1[0])) {
+			else if(Integer.parseInt(hora2[0])<Integer.parseInt(hora1[0]) || (Integer.parseInt(hora2[0])==Integer.parseInt(hora1[0]) && Integer.parseInt(hora2[1])<Integer.parseInt(hora1[1])) ) {
 				if(diferenciaEnMinutosPorHoras(res.getHora(),hora,res.getServicios().length*30)) {
 					cont++;
 				}
