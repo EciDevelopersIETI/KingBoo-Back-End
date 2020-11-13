@@ -59,9 +59,15 @@ public class ReservaController {
 	}
 
 	@PostMapping("/newreserva")
-	public ResponseEntity<?> newUser(@RequestBody Reserva reserva) throws ServletException {
-		Service.saveReserva(reserva);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<?> newReserva(@RequestBody Reserva reserva) throws ServletException, ParseException {
+		if(Service.verificarCuposReserva(reserva)) {
+			Service.saveReserva(reserva);
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		}
+		else {
+			throw new ServletException("No se pudo realizar la reserva debido a que no hay suficientes cupos en la fecha que eligio para todos los servicios que desea reservar ,Por favor revise los horarios disponibles y realize la reserva en esos horarios");
+		}
+
 	}
 	@RequestMapping(path ="/{id}",method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioByNick(@PathVariable ("id") String id){
