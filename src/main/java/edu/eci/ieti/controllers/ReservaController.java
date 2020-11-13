@@ -1,7 +1,11 @@
 package edu.eci.ieti.controllers;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 
 import javax.servlet.ServletException;
 
@@ -36,6 +40,24 @@ public class ReservaController {
 	            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
 	       }
 	 }
+
+	@RequestMapping (path="/actives", method = RequestMethod.GET )
+	public ResponseEntity<?>  getAllActiveReservas(){
+		try{
+			Date fecha = new Date();
+			List<Reserva> reservas = Service.getAllReservas();
+			List<Reserva> actives = new ArrayList<Reserva>();
+			for(Reserva r : reservas){
+				if((new Date(r.getFecha().getTime() + (1000 * 60 * 60 * 24))).after(fecha)){
+					actives.add(r);
+				}
+			}
+			return new ResponseEntity<>(actives, HttpStatus.ACCEPTED);
+		}catch (Exception e){
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+
 	@PostMapping("/newreserva")
 	public ResponseEntity<?> newUser(@RequestBody Reserva reserva) throws ServletException {
 		Service.saveReserva(reserva);
@@ -52,6 +74,21 @@ public class ReservaController {
 		User usuario = Service.getUserByEmail(user);
 		return new ResponseEntity<>(Service.getReservaByUser(usuario),HttpStatus.ACCEPTED);
 	}
+
+	@RequestMapping(path ="/activeuser/{user}",method = RequestMethod.GET)
+	public ResponseEntity<?> getActiveReservaByUser(@PathVariable ("user") String user){
+		User usuario = Service.getUserByEmail(user);
+		Date fecha = new Date();
+		List<Reserva> reservas = Service.getReservaByUser(usuario);
+		List<Reserva> actives = new ArrayList<Reserva>();
+		for(Reserva r : reservas){
+			if((new Date(r.getFecha().getTime() + (1000 * 60 * 60 * 24))).after(fecha)){
+				actives.add(r);
+			}
+		}
+		return new ResponseEntity<>(actives,HttpStatus.ACCEPTED);
+	}
+
 	
 	@RequestMapping(path ="/provider/{provider}/date/{date}",method = RequestMethod.GET)
 	public ResponseEntity<?> getReservaByProviderandDate(@PathVariable ("provider") String provider,@PathVariable ("date") String fecha){
@@ -75,6 +112,19 @@ public class ReservaController {
 	@RequestMapping(path ="/provider/{provider}",method = RequestMethod.GET)
 	public ResponseEntity<?> getReservaByProvider(@PathVariable ("provider") String provider){
 		return new ResponseEntity<>(Service.getReservaByProvider(provider),HttpStatus.ACCEPTED);
+	}
+
+	@RequestMapping(path ="/activeprovider/{provider}",method = RequestMethod.GET)
+	public ResponseEntity<?> getActiveReservaByProvider(@PathVariable ("provider") String provider){
+		Date fecha = new Date();
+		List<Reserva> reservas = Service.getReservaByProvider(provider);
+		List<Reserva> actives = new ArrayList<Reserva>();
+		for(Reserva r : reservas){
+			if((new Date(r.getFecha().getTime() + (1000 * 60 * 60 * 24))).after(fecha)){
+				actives.add(r);
+			}
+		}
+		return new ResponseEntity<>(actives,HttpStatus.ACCEPTED);
 	}
 
     @PostMapping("/updatereserva")
