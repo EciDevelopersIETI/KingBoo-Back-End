@@ -54,6 +54,47 @@ public class servicesKingBooImpl {
 	
 		
 	}
+	public int[] getEstadisticasByProvider(String nameProvider) {
+		int res[]=new int[4];
+		List<Reserva> reservas = this.getReservaByProvider(nameProvider);
+		int total= getNumeroTotalReservas(reservas);
+		String servicesreferTempo[] = {"Corte de Cabello","Barba","Manicura","Depilacion"};
+		String servicesrefer[] =new String[servicesreferTempo.length];
+		List<String> services = Arrays.asList(this.getServicesProviderByName(nameProvider));
+		for(int i=0;i<servicesreferTempo.length;i++) {
+			for(String ser2:services) {
+				if((servicesreferTempo[i].split(" ")[0]).equals(ser2.split(" ")[0])) {
+					servicesrefer[i] = ser2;
+				}
+			}
+		}
+		for(int i=0;i<servicesrefer.length;i++) {
+			if(!services.contains(servicesrefer[i])) {
+				res[i]=0;
+			}
+			else {
+				res[i]=this.getNumeroReservasServicio(servicesrefer[i],reservas);
+			}
+		}
+		return res;
+	}
+	public int getNumeroReservasServicio(String service,List<Reserva> reservas) {
+		int cont = 0;
+		for(Reserva res:reservas) {
+			List<String> servicesReserva = Arrays.asList(res.getServicios());
+			if(servicesReserva.contains(service)) {
+				cont++;
+			}
+		}
+		return cont;
+	}
+	public int getNumeroTotalReservas(List<Reserva> reservas) {
+		int cont = 0;
+		for(Reserva res:reservas) {
+			cont+=res.getServicios().length;
+		}
+		return cont;
+	}
 	public boolean verificarCuposReserva(Reserva reserva) throws ParseException {
 		boolean res = true;
 		String fecha = new SimpleDateFormat("yyyy-MM-dd").format((new Date(reserva.getFecha().getTime() + (1000 * 60 * 60 * 24))));
