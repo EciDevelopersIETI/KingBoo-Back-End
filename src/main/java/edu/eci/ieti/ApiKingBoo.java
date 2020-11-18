@@ -34,12 +34,5 @@ public class ApiKingBoo {
     public static void main(String[] args) {
         SpringApplication.run(ApiKingBoo.class, args);
     }
-
-    @Bean public CommandLineRunner demo(servicesKingBooImpl service) {
-        return (args) -> {
-
-
-        };
-    }
-
+    
 }
