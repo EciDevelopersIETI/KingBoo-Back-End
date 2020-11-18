@@ -4,9 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-
-
-
 @Document(collection = "users")
 public class User {
 
@@ -16,13 +13,15 @@ public class User {
 		    private String password;
 		    private String telefono;
 		    private Provider provider;
-		    private String rol;			
-			public User(String userName, String email, String password, String telefono, Provider provider) {
+		    private String rol;
+		    private String imgUrl;
+			public User(String userName, String email, String password, String telefono, Provider provider, String imgUrl) {
 				this.userName = userName;
 				this.email = email;
 				this.password = password;
 				this.telefono = telefono;
 				this.provider = provider;
+				this.imgUrl = imgUrl;
 				this.rol = provider != null && provider.getNit() !=0 ? "pro":"cli";
 			}
 			
@@ -73,7 +72,14 @@ public class User {
 				this.provider = provider;
 			}
 
-			/**
+			public String getImgUrl() {
+				return imgUrl;
+			}
+
+			public void setImgUrl(String imgUrl) {
+				this.imgUrl = imgUrl;
+			}
+		/**
 		    @Override
 		    public String toString() {
 		        return "User{" +
