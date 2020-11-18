@@ -34,6 +34,5 @@ public class ApiKingBoo {
     public static void main(String[] args) {
         SpringApplication.run(ApiKingBoo.class, args);
     }
-
     
 }
