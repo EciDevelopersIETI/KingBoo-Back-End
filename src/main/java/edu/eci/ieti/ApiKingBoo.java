@@ -31,8 +31,6 @@ import javax.xml.ws.Service;
 @EntityScan("edu.eci.ieti.entities")
 public class ApiKingBoo {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ApiKingBoo.class, args);
-    }
+    public static void main(String[] args) { SpringApplication.run(ApiKingBoo.class, args); }
     
 }

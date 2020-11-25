@@ -2,6 +2,11 @@
      @Bean public CommandLineRunner demo(servicesKingBooImpl service) {
      return (args) -> {
 
+     String servicios[] = {"Corte de Cabello ($12000)","Barba ($12000)"};
+     Provider provider = new Provider("Hope Shop zxc", 123, "Calle 14#5c-19", servicios, "Hope plz", 5,"https://images-na.ssl-images-amazon.com/images/I/51ihEQXme9L._AC_.jpg");
+     User user1 = new User("jj", "jj@mail.com", "ieti123", "3107745642", provider,"https://i.pinimg.com/originals/46/e3/a3/46e3a3e06083c12874ab3929483b21fb.png");
+     service.saveUser(user1);
+
      String servicios[] = {"Corte de Cabello","Manicura","Barba","Depilacion"};
      Provider provider = new Provider("Luis Shop",123,"Calle 14#5c-19",servicios,"Carlos es mi amigo",5);
      User user1 = new User("Luis","luis@mail.com","ieti123","3107704065",provider);
