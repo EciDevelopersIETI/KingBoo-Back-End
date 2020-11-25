@@ -15,14 +15,15 @@ public class Provider {
     private String[] services;
     private String description;
     private int capacity;
-
-    public Provider(String providerName, long nit, String address, String[] services, String description, int capacity) {
+    private String provImgUrl;
+    public Provider(String providerName, long nit, String address, String[] services, String description, int capacity, String provImgUrl) {
         this.providerName = providerName;
         this.nit = nit;
         this.address = address;
         this.services = services;
         this.description = description;
         this.capacity = capacity;
+        this.provImgUrl = provImgUrl;
     }
 
     public  Provider(){ }
@@ -70,6 +71,14 @@ public class Provider {
     public int getCapacity() { return capacity; }
 
     public void setCapacity(int capacity) { this.capacity = capacity; }
+
+    public String getProvImgUrl() {
+        return provImgUrl;
+    }
+
+    public void setProvImgUrl(String provImgUrl) {
+        this.provImgUrl = provImgUrl;
+    }
 
     /**
     @Override
