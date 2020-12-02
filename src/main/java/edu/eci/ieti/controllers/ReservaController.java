@@ -124,6 +124,8 @@ public class ReservaController {
 		return new ResponseEntity<>(Service.getEstadisticasByProvider(provider),HttpStatus.ACCEPTED);
 	}
 
+
+
 	@RequestMapping(path ="/activeprovider/{provider}",method = RequestMethod.GET)
 	public ResponseEntity<?> getActiveReservaByProvider(@PathVariable ("provider") String provider){
 		Date fecha = new Date();

@@ -32,3 +32,10 @@
 
      };
      }*/
+
+    @Bean public CommandLineRunner demo(servicesKingBooImpl service) {
+        return (args) -> {
+            service.getEstadisticasByProvider("Luis Shop");
+
+        };
+    }
