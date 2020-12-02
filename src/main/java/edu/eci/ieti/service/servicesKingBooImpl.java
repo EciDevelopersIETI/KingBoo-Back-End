@@ -79,11 +79,15 @@ public class servicesKingBooImpl {
 		return res;
 	}
 	public int getNumeroReservasServicio(String service,List<Reserva> reservas) {
+		String[] serviceOnly = service.split(" ");
 		int cont = 0;
 		for(Reserva res:reservas) {
 			List<String> servicesReserva = Arrays.asList(res.getServicios());
-			if(servicesReserva.contains(service)) {
-				cont++;
+			for(String i:servicesReserva){
+				String[] serviceResOnly = i.split(" ");
+				if(serviceResOnly[0].equals(serviceOnly[0])){
+					cont++;
+				}
 			}
 		}
 		return cont;
