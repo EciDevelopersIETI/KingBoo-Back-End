@@ -57,7 +57,6 @@ public class servicesKingBooImpl {
 	public int[] getEstadisticasByProvider(String nameProvider) {
 		int res[]=new int[4];
 		List<Reserva> reservas = this.getReservaByProvider(nameProvider);
-		int total= getNumeroTotalReservas(reservas);
 		String servicesreferTempo[] = {"Corte de Cabello","Barba","Manicura","Depilacion"};
 		String servicesrefer[] =new String[servicesreferTempo.length];
 		List<String> services = Arrays.asList(this.getServicesProviderByName(nameProvider));
@@ -78,6 +77,19 @@ public class servicesKingBooImpl {
 		}
 		return res;
 	}
+
+	public int[] getEstadisticasByHora(String nameProvider){
+		int res[]=new int[24];
+		List<Reserva> reservas = this.getReservaByProvider(nameProvider);
+		String horaTemp[] = {"07:00","07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30"};
+		for(int i=0;i<horaTemp.length;i++) {
+			int count = countReservasByHora(reservas,horaTemp[i]);
+			res[i]=count;
+		}
+		List<String> services = Arrays.asList(this.getServicesProviderByName(nameProvider));
+		return res;
+	}
+
 	public int getNumeroReservasServicio(String service,List<Reserva> reservas) {
 		String[] serviceOnly = service.split(" ");
 		int cont = 0;
@@ -227,7 +239,6 @@ public class servicesKingBooImpl {
 	public List<Reserva> getReservaByProvider(String provider){
 		List<Reserva> reservas = new ArrayList<>();
 		for(Reserva res:reservaRepository.findAll()){
-			System.out.println("res: "+res.getProvider().getProviderName());
 			if(res.getProvider().getProviderName().equals(provider)){
 				reservas.add(res);
 			}
@@ -238,8 +249,6 @@ public class servicesKingBooImpl {
 	public List<Reserva> getReservaByUser(User user){
 		List<Reserva> reservas = new ArrayList<>();
 		for(Reserva res:reservaRepository.findAll()){
-			System.out.println("res: "+res.getUser().getEmail());
-			System.out.println("user: "+user.getEmail());
 			if(res.getUser().getEmail().equals(user.getEmail())){
 				reservas.add(res);
 			}
@@ -250,6 +259,8 @@ public class servicesKingBooImpl {
 	public String[] getServicesProviderByName(String name){
 		return this.getProviderByName(name).getServices();
 	}
+
+
 	public Provider getProviderByName(String name){
 		return providerRepository.findByProviderName(name);
 	}

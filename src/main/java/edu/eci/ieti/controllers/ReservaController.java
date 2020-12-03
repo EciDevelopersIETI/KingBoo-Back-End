@@ -124,7 +124,10 @@ public class ReservaController {
 		return new ResponseEntity<>(Service.getEstadisticasByProvider(provider),HttpStatus.ACCEPTED);
 	}
 
-
+	@RequestMapping(path ="/getEstadisticasHora/{provider}",method = RequestMethod.GET)
+	public ResponseEntity<?> getEstadisticasHora(@PathVariable ("provider") String provider){
+		return new ResponseEntity<>(Service.getEstadisticasByHora(provider),HttpStatus.ACCEPTED);
+	}
 
 	@RequestMapping(path ="/activeprovider/{provider}",method = RequestMethod.GET)
 	public ResponseEntity<?> getActiveReservaByProvider(@PathVariable ("provider") String provider){
