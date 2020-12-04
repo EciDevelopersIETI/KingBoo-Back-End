@@ -54,6 +54,31 @@ public class servicesKingBooImpl {
 	
 		
 	}
+	public List<Object> getClientesFrecuentes(String nameProvider){
+		List<Object> usuariosfrecuentes = new ArrayList<Object>();
+		List<User> usuarios = this.getAllUsuarios();
+		List<Reserva> reservas = this.getReservaByProvider(nameProvider);
+		for(User u:usuarios) {
+			if((u.getRol()).equals("cli")) {
+				System.out.println(getReservasUserByProvider(u,reservas));
+				if(3<getReservasUserByProvider(u,reservas)) {
+					Object[] datos = {getReservasUserByProvider(u,reservas),u};
+					usuariosfrecuentes.add(datos);
+				}
+			}
+		}
+		return usuariosfrecuentes;
+
+	}
+	public int getReservasUserByProvider(User user,List<Reserva> reservas) {
+		int cont = 0;
+		for(Reserva re:reservas) {
+			if((user.getEmail()).equals(re.getUser().getEmail())) {
+				cont++;
+			}
+		}
+		return cont;
+	}
 	public int[] getEstadisticasByProvider(String nameProvider) {
 		int res[]=new int[4];
 		List<Reserva> reservas = this.getReservaByProvider(nameProvider);

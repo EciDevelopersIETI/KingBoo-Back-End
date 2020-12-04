@@ -42,6 +42,11 @@ public class ProviderController {
             return new ResponseEntity<>(Service.getServicesProviderByName(name),HttpStatus.ACCEPTED);
 
     }
+    @RequestMapping(path ="/{name}/getClientesFrecuentes",method = RequestMethod.GET)
+    public ResponseEntity<?> getClientesFrecuentes(@PathVariable ("name") String name){
+            return new ResponseEntity<>(Service.getClientesFrecuentes(name),HttpStatus.ACCEPTED);
+
+    }
 
 
 }
